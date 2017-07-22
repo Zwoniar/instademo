@@ -8,9 +8,10 @@ using InstaDemo.Data;
 namespace InstaDemo.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170721164943_AddPhotoEntity")]
+    partial class AddPhotoEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -77,8 +78,6 @@ namespace InstaDemo.Data.Migrations
                     b.Property<DateTime>("CreationDate");
 
                     b.Property<string>("Description");
-
-                    b.Property<string>("FileName");
 
                     b.Property<string>("Title")
                         .IsRequired();
