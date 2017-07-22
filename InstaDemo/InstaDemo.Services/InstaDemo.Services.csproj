@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InstaDemo.Contracts\InstaDemo.Contracts.csproj" />
+    <ProjectReference Include="..\InstaDemo.DataAccess\InstaDemo.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>

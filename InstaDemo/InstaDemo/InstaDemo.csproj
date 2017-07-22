@@ -33,5 +33,10 @@
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InstaDemo.Contracts\InstaDemo.Contracts.csproj" />
+    <ProjectReference Include="..\InstaDemo.DataAccess\InstaDemo.DataAccess.csproj" />
+    <ProjectReference Include="..\InstaDemo.Services\InstaDemo.Services.csproj" />
+  </ItemGroup>
 
 </Project>

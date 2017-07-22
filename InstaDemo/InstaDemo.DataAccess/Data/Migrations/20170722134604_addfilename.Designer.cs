@@ -3,13 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using InstaDemo.Data;
 
-namespace InstaDemo.Data.Migrations
+namespace InstaDemo.DataAccess.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170721164943_AddPhotoEntity")]
-    partial class AddPhotoEntity
+    [Migration("20170722134604_addfilename")]
+    partial class addfilename
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,6 +77,8 @@ namespace InstaDemo.Data.Migrations
                     b.Property<DateTime>("CreationDate");
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("FileName");
 
                     b.Property<string>("Title")
                         .IsRequired();

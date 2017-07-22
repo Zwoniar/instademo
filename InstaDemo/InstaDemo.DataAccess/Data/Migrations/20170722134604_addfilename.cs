@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace InstaDemo.Data.Migrations
+namespace InstaDemo.DataAccess.Data.Migrations
 {
     public partial class addfilename : Migration
     {
