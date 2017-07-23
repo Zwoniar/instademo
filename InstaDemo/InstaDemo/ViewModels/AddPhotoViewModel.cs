@@ -9,6 +9,7 @@ namespace InstaDemo.ViewModels
 {
     public class AddPhotoViewModel
     {
+        [Required]
         public string Title { get; set; }
         public string Description { get; set; }
         [Display(Name = "Photo")]

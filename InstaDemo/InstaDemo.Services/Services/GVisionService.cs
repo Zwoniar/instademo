@@ -22,8 +22,7 @@ namespace InstaDemo.Services.Services
             var client = ImageAnnotatorClient.Create();
 
             //var response = client.DetectLabels(Image.FetchFromUri(_url + id));
-            //url =
-            //    "https://www.topgear.com/sites/default/files/styles/16x9_1280w/public/cars-car/image/2015/02/buyers_guide_-_vw_golf_gti_2014_-_front_quarter.jpg?itok=lwiRtMw0";
+            url = "https://www.topgear.com/sites/default/files/styles/16x9_1280w/public/cars-car/image/2015/02/buyers_guide_-_vw_golf_gti_2014_-_front_quarter.jpg?itok=lwiRtMw0";
             var response = client.DetectLabels(Image.FetchFromUri(url));
             return response.Adapt<IReadOnlyList<GVisionImageResponse>>();
         }

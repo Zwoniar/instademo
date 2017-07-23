@@ -1,0 +1,21 @@
+@model IEnumerable<InstaDemo.ViewModels.GVisionImageResponseViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+<div class="row">
+
+    <div class="col-lg-12">
+        <h1 class="page-header">GVision data</h1>
+    </div>
+    
+    @foreach (var gvisionData in Model)
+    {
+        <div class="col-lg-3">
+            <p>@gvisionData.Description</p>
+            <p>@gvisionData.Score</p>
+        </div>
+    }
+  
+    
+</div>

@@ -12,7 +12,7 @@
     @foreach (var photo in Model)
     {
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <a class="thumbnail" href="Photo/Details/@photo.Id">
+            <a class="thumbnail" href="/Photo/Details/@photo.Id">
                 <img class="img-responsive" src="/Thumb/@photo.Id" alt="@photo.Title">
             </a>
             <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-photo-id="@photo.Id" data-target="#delPhotoModal">Delete</button>

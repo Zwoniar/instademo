@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -125,9 +126,12 @@ namespace InstaDemo.Controllers
         [Authorize]
         public async Task<IActionResult> GVision(int id)
         {
-            var recognized = _gVisionService.Recognize(Request.GetUri().GetComponents(UriComponents.Scheme | UriComponents.StrongAuthority, UriFormat.Unescaped) + "/" + nameof(Photo) + "/");
-            return Json(recognized);
+            var recognized = _gVisionService.Recognize(Request.GetUri()
+                .GetComponents(UriComponents.Scheme | UriComponents.StrongAuthority, UriFormat.Unescaped) + $"/{nameof(Photo)}/")
+                .Adapt<List<GVisionImageResponseViewModel>>();
+            return PartialView(recognized);
         }
+
 
         private static PhotoDto CreatePhoto(AddPhotoViewModel photo, string userId,
         string fileName, byte[] photoContent, byte[] thumb)
