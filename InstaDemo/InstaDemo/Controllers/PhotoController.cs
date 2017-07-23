@@ -27,8 +27,10 @@ namespace InstaDemo.Controllers
     public class PhotoController : BaseController
     {
         private IPhotoService _photoService;
-        public PhotoController(IPhotoService photoService, UserManager<ApplicationUser> userManager) : base(userManager)
+        private IGVisionService _gVisionService;
+        public PhotoController(IPhotoService photoService, IGVisionService gVisionService, UserManager<ApplicationUser> userManager) : base(userManager)
         {
+            _gVisionService = gVisionService;
             _photoService = photoService;
         }
 
@@ -123,9 +125,8 @@ namespace InstaDemo.Controllers
         [Authorize]
         public async Task<IActionResult> GVision(int id)
         {
-            var gVisionService = new GVisionService(Request.GetUri().GetComponents(UriComponents.Scheme | UriComponents.StrongAuthority, UriFormat.Unescaped) + "/" + nameof(Photo) + "/");
-            gVisionService.Recognize(id);
-            return Json("");
+            var recognized = _gVisionService.Recognize(Request.GetUri().GetComponents(UriComponents.Scheme | UriComponents.StrongAuthority, UriFormat.Unescaped) + "/" + nameof(Photo) + "/");
+            return Json(recognized);
         }
 
         private static PhotoDto CreatePhoto(AddPhotoViewModel photo, string userId,

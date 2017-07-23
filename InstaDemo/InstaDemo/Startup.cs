@@ -63,6 +63,7 @@ namespace InstaDemo
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IGVisionService, GVisionService>();
 
             ConfigureMappers();
         }

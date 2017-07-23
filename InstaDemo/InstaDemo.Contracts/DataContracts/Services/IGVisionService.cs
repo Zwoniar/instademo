@@ -4,7 +4,8 @@ using System.Text;
 
 namespace InstaDemo.Contracts.DataContracts.Services
 {
-    interface IGVisionService
+    public interface IGVisionService
     {
+        IReadOnlyList<GVisionImageResponse> Recognize(string url);
     }
 }
