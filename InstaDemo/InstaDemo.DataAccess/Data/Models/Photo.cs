@@ -20,6 +20,9 @@ namespace InstaDemo.DataAccess.Data.Models
         public byte[] Content { get; set; }
 
         [Required]
+        public byte[] ThumbContent { get; set; }
+
+        [Required]
         public string UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]

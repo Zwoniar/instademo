@@ -1,0 +1,59 @@
+@model IEnumerable<InstaDemo.ViewModels.PhotoDataThumbViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+<div class="row">
+
+    <div class="col-lg-12">
+        <h1 class="page-header">Photo list</h1>
+    </div>
+
+    @foreach (var photo in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a class="thumbnail" href="Photo/Details/@photo.Id">
+                <img class="img-responsive" src="/Thumb/@photo.Id" alt="@photo.Title">
+            </a>
+            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-photo-id="@photo.Id" data-target="#delPhotoModal">Delete</button>
+        </div>
+    }
+
+    <!-- Modal -->
+    <div id="delPhotoModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete photo</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are u sure do you want to delete a photo?</p>
+                </div>
+                <div class="modal-footer">
+
+                    <form asp-action="Delete" method="post" class="form-horizontal" role="form">
+                        <input name="id" type="hidden" value=""/>
+                        <input type="submit" name="button-del" class="btn btn-danger" value="Delete"/>
+                    </form>
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    //triggered when modal is about to be shown
+    var photoId;
+    $('#delPhotoModal').on('show.bs.modal', function (e) {
+        photoId = $(e.relatedTarget).data('photo-id');
+        $(e.currentTarget).find('input[name="id"]').val(photoId);
+    });
+
+    $('.button-del').click(function () {
+
+    })
+
+</script>

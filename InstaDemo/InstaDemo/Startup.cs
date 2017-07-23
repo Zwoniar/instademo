@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InstaDemo.Contracts.DataContracts;
+using InstaDemo.Contracts.DataContracts.Repositories;
+using InstaDemo.Contracts.DataContracts.Services;
 using InstaDemo.DataAccess.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,8 +14,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using InstaDemo.DataAccess.Data.Models;
+using InstaDemo.DataAccess.Data.Repositories;
 using InstaDemo.Identity.Models;
 using InstaDemo.Identity.Services;
+using InstaDemo.Services.Services;
+using InstaDemo.ViewModels;
+using Mapster;
 
 
 namespace InstaDemo
@@ -54,6 +61,15 @@ namespace InstaDemo
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
+            services.AddScoped<IPhotoService, PhotoService>();
+
+            ConfigureMappers();
+        }
+
+        private void ConfigureMappers()
+        {
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +99,7 @@ namespace InstaDemo
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Photo}/{action=List}/{id?}");
             });
         }
     }
