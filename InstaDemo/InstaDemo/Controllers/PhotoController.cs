@@ -104,7 +104,7 @@ namespace InstaDemo.Controllers
             if (!details.IsSuccess)
                 return StatusCode(404);
 
-            return View(details.Item);
+            return View(details.Item.Adapt<PhotoDetailsViewModel>());
         }
 
         [ValidateAntiForgeryToken]
