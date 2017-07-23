@@ -12,7 +12,9 @@ using InstaDemo.DataAccess.Data.Models;
 using InstaDemo.Services.Services;
 using InstaDemo.ViewModels;
 using Mapster;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -119,8 +121,10 @@ namespace InstaDemo.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> GVision()
-        { 
+        public async Task<IActionResult> GVision(int id)
+        {
+            var gVisionService = new GVisionService(Request.GetUri().GetComponents(UriComponents.Scheme | UriComponents.StrongAuthority, UriFormat.Unescaped) + "/" + nameof(Photo) + "/");
+            gVisionService.Recognize(id);
             return Json("");
         }
 
