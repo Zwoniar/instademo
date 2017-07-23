@@ -12,7 +12,9 @@ using InstaDemo.DataAccess.Data.Models;
 using InstaDemo.Services.Services;
 using InstaDemo.ViewModels;
 using Mapster;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -25,8 +27,10 @@ namespace InstaDemo.Controllers
     public class PhotoController : BaseController
     {
         private IPhotoService _photoService;
-        public PhotoController(IPhotoService photoService, UserManager<ApplicationUser> userManager) : base(userManager)
+        private IGVisionService _gVisionService;
+        public PhotoController(IPhotoService photoService, IGVisionService gVisionService, UserManager<ApplicationUser> userManager) : base(userManager)
         {
+            _gVisionService = gVisionService;
             _photoService = photoService;
         }
 
@@ -119,9 +123,10 @@ namespace InstaDemo.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> GVision()
-        { 
-            return Json("");
+        public async Task<IActionResult> GVision(int id)
+        {
+            var recognized = _gVisionService.Recognize(Request.GetUri().GetComponents(UriComponents.Scheme | UriComponents.StrongAuthority, UriFormat.Unescaped) + "/" + nameof(Photo) + "/");
+            return Json(recognized);
         }
 
         private static PhotoDto CreatePhoto(AddPhotoViewModel photo, string userId,
