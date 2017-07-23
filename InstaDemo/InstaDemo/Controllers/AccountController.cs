@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using InstaDemo.Data.Models;
+using InstaDemo.DataAccess.Data.Models;
 using InstaDemo.Identity.Models;
 using InstaDemo.Identity.Models.AccountViewModels;
 using InstaDemo.Identity.Services;

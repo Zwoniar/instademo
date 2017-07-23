@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InstaDemo.Data.Models;
+using InstaDemo.DataAccess.Data.Models;
 using InstaDemo.Identity.Models;
 using InstaDemo.Identity.Models.ManageViewModels;
 using InstaDemo.Identity.Services;
